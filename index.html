@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Report an Issue · Resident Report</title>
+  <meta name="description" content="Report building and facility issues to the management office.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231e3a5f'/%3E%3Cpath d='M8 26V12l8-6 8 6v14h-6v-7h-4v7z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="demo-banner" class="demo-banner" hidden>Preview mode: not connected yet, nothing will be saved.</div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" data-initials>RR</span>
+        <span>
+          <span class="brand-name" data-building>Resident Report</span>
+          <span class="brand-sub">Complaints &amp; Feedback</span>
+        </span>
+      </a>
+      <nav class="nav">
+        <a href="index.html" class="active">Report an issue</a>
+        <a href="track.html">Track my case</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap main">
+    <section id="form-view">
+      <div class="page-head">
+        <h1>Report an issue</h1>
+        <p data-tagline>Report building issues and follow their progress</p>
+      </div>
+
+      <form id="complaint-form" class="card" novalidate>
+        <fieldset>
+          <legend><span class="step">1</span> Your details</legend>
+          <div class="grid">
+            <div class="field span-2">
+              <label for="name">Full name <span class="req">*</span></label>
+              <input id="name" name="name" autocomplete="name" maxlength="100" required>
+              <p class="error"></p>
+            </div>
+            <div class="field span-2" id="applicant-field">
+              <span class="label">I am the <span class="req">*</span></span>
+              <div class="choice" role="radiogroup" aria-label="Applicant type">
+                <label><input type="radio" name="applicantType" value="Owner"><span>Owner</span></label>
+                <label><input type="radio" name="applicantType" value="Tenant"><span>Tenant</span></label>
+              </div>
+              <p class="error"></p>
+            </div>
+            <div class="field">
+              <label for="block">Block <span class="req">*</span></label>
+              <select id="block" name="block" required><option value="">Select your block</option></select>
+              <p class="error"></p>
+            </div>
+            <div class="field">
+              <label for="unit">Unit no. <span class="req">*</span></label>
+              <input id="unit" name="unit" maxlength="20" placeholder="e.g. A-12-03" required>
+              <p class="error"></p>
+            </div>
+            <div class="field span-2">
+              <label for="phone">Phone number <span class="req">*</span></label>
+              <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="e.g. 012-345 6789" required>
+              <p class="hint">You'll need this to track your case. Management will contact you during office hours (9am – 5pm).</p>
+              <p class="error"></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><span class="step">2</span> About the issue</legend>
+          <div class="grid">
+            <div class="field">
+              <label for="category">Category <span class="req">*</span></label>
+              <select id="category" name="category" required><option value="">Select a category</option></select>
+              <p class="error"></p>
+            </div>
+            <div class="field">
+              <label for="location">Location <span class="req">*</span></label>
+              <input id="location" name="location" maxlength="150" placeholder="e.g. Staircase, Block A level 2" required>
+              <p class="error"></p>
+            </div>
+            <div class="field span-2">
+              <label for="description">Description <span class="req">*</span></label>
+              <textarea id="description" name="description" rows="5" maxlength="2000" placeholder="What happened, when did it start, and how is it affecting you?" required></textarea>
+              <p class="hint"><span id="desc-count">0</span> / 2000</p>
+              <p class="error"></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><span class="step">3</span> Photos &amp; videos <span class="optional">optional</span></legend>
+          <label class="dropzone" id="dropzone" for="files">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0-4 4m4-4 4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="dz-title">Tap to add or drag files here</span>
+            <span class="dz-sub" id="file-rules"></span>
+          </label>
+          <input id="files" type="file" multiple class="visually-hidden"
+            accept=".jpg,.jpeg,.png,.webp,.heic,.mp4,.mov,image/jpeg,image/png,image/webp,image/heic,video/mp4,video/quicktime">
+          <ul id="file-list" class="file-list"></ul>
+          <p class="error" id="file-error"></p>
+        </fieldset>
+
+        <!-- Honeypot: hidden from people, bots fill it in. -->
+        <div class="hp" aria-hidden="true">
+          <label for="website">Website</label>
+          <input id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="field consent">
+          <label class="check">
+            <input type="checkbox" id="consent" name="consent">
+            <span>I agree that my personal data will be used by the management to handle this complaint, as described in the <a href="privacy.html" target="_blank" rel="noopener">privacy notice</a>.</span>
+          </label>
+          <p class="error"></p>
+        </div>
+
+        <div class="form-foot">
+          <p class="privacy">Your details are only shared with the management office to handle this complaint.</p>
+          <button type="submit" class="btn btn-primary" id="submit-btn">Submit complaint</button>
+        </div>
+        <div class="alert alert-error" id="form-error" hidden></div>
+      </form>
+    </section>
+
+    <section id="progress-view" class="card center" hidden>
+      <div class="spinner"></div>
+      <h2 id="progress-title">Submitting your complaint…</h2>
+      <p id="progress-sub" class="muted">Please keep this page open.</p>
+      <div class="bar"><div id="progress-bar"></div></div>
+    </section>
+
+    <section id="success-view" class="card center" hidden>
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h2>Complaint submitted</h2>
+      <p class="muted">Your case ID is</p>
+      <div class="case-id">
+        <strong id="case-id"></strong>
+        <button type="button" class="btn btn-ghost btn-sm" id="copy-btn">Copy</button>
+      </div>
+      <p class="muted">Save this ID. You can track progress with it and your phone number.</p>
+      <div class="alert alert-warn" id="upload-warn" hidden></div>
+      <div class="actions">
+        <a class="btn btn-primary" id="track-link" href="track.html">Track this case</a>
+        <a class="btn btn-ghost" href="index.html">Report another issue</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© <span id="year"></span> <span data-building>Resident Report</span></p>
+      <p data-contact hidden></p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="common.js"></script>
+  <script src="form.js"></script>
+</body>
+</html>

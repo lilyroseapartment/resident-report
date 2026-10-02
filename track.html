@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Track My Case · Resident Report</title>
+  <meta name="description" content="Check the status of a complaint you reported.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231e3a5f'/%3E%3Cpath d='M8 26V12l8-6 8 6v14h-6v-7h-4v7z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="demo-banner" class="demo-banner" hidden>Preview mode: not connected yet, showing sample data.</div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" data-initials>RR</span>
+        <span>
+          <span class="brand-name" data-building>Resident Report</span>
+          <span class="brand-sub">Complaints &amp; Feedback</span>
+        </span>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Report an issue</a>
+        <a href="track.html" class="active">Track my case</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap main narrow">
+    <div class="page-head">
+      <h1>Track my case</h1>
+      <p>Enter the case ID you received and the phone number you used.</p>
+    </div>
+
+    <form id="track-form" class="card" novalidate>
+      <div class="grid">
+        <div class="field">
+          <label for="caseId">Case ID</label>
+          <input id="caseId" name="caseId" placeholder="e.g. APT-2026-0001" autocapitalize="characters" spellcheck="false" required>
+        </div>
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. 012-345 6789" required>
+        </div>
+      </div>
+      <div class="alert alert-error" id="track-error" hidden></div>
+      <div class="form-foot">
+        <span></span>
+        <button type="submit" class="btn btn-primary" id="track-btn">Check status</button>
+      </div>
+    </form>
+
+    <section id="result" class="card" hidden>
+      <div class="result-head">
+        <div>
+          <p class="muted small">Case ID</p>
+          <h2 id="r-id"></h2>
+        </div>
+        <span class="badge" id="r-status"></span>
+      </div>
+
+      <ol class="timeline" id="r-timeline"></ol>
+
+      <dl class="details">
+        <div><dt>Category</dt><dd id="r-category"></dd></div>
+        <div><dt>Location</dt><dd id="r-location"></dd></div>
+        <div id="r-duration-row" hidden><dt>Time to resolve</dt><dd id="r-duration"></dd></div>
+      </dl>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© <span id="year"></span> <span data-building>Resident Report</span></p>
+      <p data-contact hidden></p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="common.js"></script>
+  <script src="track.js"></script>
+</body>
+</html>
