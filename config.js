@@ -4,7 +4,7 @@ window.APP_CONFIG = {
   // Leave empty to preview the site in demo mode: nothing is saved.
   API_URL: 'https://script.google.com/macros/s/AKfycbx4LjtNsGVyLLtbzgJUZ2hYG8rphHLnBVL8aN7HFSR5kvPJ6Rd94HnUEQtbzmf1f-Y/exec',
 
-  BUILDING_NAME: 'Resident Report',
+  BUILDING_NAME: 'Lily Rose Apartment',
   TAGLINE: 'Report building issues and follow their progress',
   // Shown in the footer, e.g. 'Management Office · 03-1234 5678'. Leave empty to hide.
   CONTACT_LINE: '',

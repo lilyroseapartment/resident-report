@@ -63,7 +63,7 @@ function applyBranding() {
     contact.textContent = CFG.CONTACT_LINE;
     contact.hidden = !CFG.CONTACT_LINE;
   }
-  document.title = document.title.replace('Resident Report', CFG.BUILDING_NAME);
+  document.title = document.title.replace('Lily Rose Apartment', CFG.BUILDING_NAME);
   $('#year').textContent = new Date().getFullYear();
   if (DEMO) $('#demo-banner').hidden = false;
 }
